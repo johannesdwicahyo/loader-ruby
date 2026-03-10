@@ -1,16 +1,11 @@
 # loader-ruby
 
-Document loader library for Ruby RAG pipelines. Extracts text from PDF, DOCX, CSV, HTML, and web pages.
+Document loader library for Ruby RAG pipelines. Load text from PDF, HTML, CSV, DOCX, and web URLs.
 
 ## Installation
 
 ```ruby
-gem "loader-ruby", "~> 0.1"
-
-# Optional dependencies for specific formats:
-gem "pdf-reader"  # PDF support
-gem "nokogiri"    # HTML/web support
-gem "docx"        # DOCX support
+gem "loader-ruby"
 ```
 
 ## Usage
@@ -18,20 +13,32 @@ gem "docx"        # DOCX support
 ```ruby
 require "loader_ruby"
 
-doc = LoaderRuby.load("document.pdf")
-doc.content   # => extracted text
-doc.metadata  # => { source: "document.pdf", format: :pdf, pages: 12, ... }
-
-doc = LoaderRuby.load("notes.md")
-
+# Auto-detect format from file extension
+doc = LoaderRuby.load("report.pdf")
 doc = LoaderRuby.load("data.csv")
+doc = LoaderRuby.load("page.html")
 
-docs = LoaderRuby::Loaders::Csv.new.load("data.csv", row_as_document: true)
+# Web loader with redirect handling
+doc = LoaderRuby.load("https://example.com/article")
 
-doc = LoaderRuby.load("https://example.com/page")
+# PDF with password
+loader = LoaderRuby::Loaders::Pdf.new("encrypted.pdf", password: "secret")
+doc = loader.load
 
-docs = LoaderRuby.load_batch(["file1.pdf", "file2.docx"])
+# Access content
+doc.content   # => extracted text
+doc.metadata  # => { source: "report.pdf", ... }
 ```
+
+## Features
+
+- PDF, HTML, CSV, DOCX, and plain text loaders
+- Web loader with configurable max redirects (default: 5)
+- Encoding auto-detection (BOM, Content-Type charset)
+- Graceful transcoding to UTF-8
+- Shared HTML extraction module
+- Error hierarchy (FileNotFoundError, TooManyRedirectsError, etc.)
+- Input validation for paths and URLs
 
 ## License
 
