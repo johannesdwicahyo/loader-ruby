@@ -13,27 +13,27 @@
 ## v0.1.1 — Bug Fixes & Robustness
 
 ### Fix
-- [ ] **Web loader redirect loop** — `fetch()` follows redirects recursively with no max depth; add `max_redirects: 5` parameter
-- [ ] **Encoding detection** — Text loader defaults to UTF-8; detect actual encoding via BOM or heuristics, fallback to UTF-8
-- [ ] **PDF structure loss** — Pages joined with `\n\n` loses paragraph boundaries; preserve paragraph breaks within pages
-- [ ] **CSV header ambiguity** — `row_as_document: true` requires headers but this isn't validated; error on headerless CSV
-- [ ] **HTML/Web code duplication** — `extract_text` method duplicated between Html and Web loaders; extract to shared module
-- [ ] **Input validation** — `LoaderRuby.load(nil)` crashes; validate source parameter
+- [x] **Web loader redirect loop** — `fetch()` follows redirects recursively with no max depth; add `max_redirects: 5` parameter
+- [x] **Encoding detection** — Text loader defaults to UTF-8; detect actual encoding via BOM or heuristics, fallback to UTF-8
+- [x] **PDF structure loss** — Pages joined with `\n\n` loses paragraph boundaries; preserve paragraph breaks within pages
+- [x] **CSV header ambiguity** — `row_as_document: true` requires headers but this isn't validated; error on headerless CSV
+- [x] **HTML/Web code duplication** — `extract_text` method duplicated between Html and Web loaders; extract to shared module
+- [x] **Input validation** — `LoaderRuby.load(nil)` crashes; validate source parameter
 
 ### Add
-- [ ] **Encoding auto-detection** — Detect file encoding from BOM, content sniffing, or `file` command fallback
-- [ ] **PDF password support** — `LoaderRuby.load("secret.pdf", password: "...")` for encrypted PDFs
-- [ ] **Load from IO** — `LoaderRuby.load_io(io, format: :pdf)` for streaming/uploaded files
-- [ ] **Metadata extraction** — PDF author/title/creation date, DOCX properties, HTML meta tags
+- [x] **Encoding auto-detection** — Detect file encoding from BOM, content sniffing, or `file` command fallback
+- [x] **PDF password support** — `LoaderRuby.load("secret.pdf", password: "...")` for encrypted PDFs
+- [x] **Load from IO** — `LoaderRuby.load_io(io, format: :pdf)` for streaming/uploaded files
+- [x] **Metadata extraction** — PDF author/title/creation date, DOCX properties, HTML meta tags
 
 ### Test
-- [ ] Redirect loop protection (301 → 302 → 301 cycle)
-- [ ] Files with different encodings (Latin-1, Shift_JIS, Windows-1252)
-- [ ] Password-protected PDF
-- [ ] CSV with special characters (quotes, commas in values, UTF-8)
-- [ ] Empty files for each format
-- [ ] Binary file detection (don't load .exe as text)
-- [ ] Very large files (>100MB) — verify file size check works
+- [x] Redirect loop protection (301 → 302 → 301 cycle)
+- [x] Files with different encodings (Latin-1, Shift_JIS, Windows-1252)
+- [x] Password-protected PDF
+- [x] CSV with special characters (quotes, commas in values, UTF-8)
+- [x] Empty files for each format
+- [x] Binary file detection (don't load .exe as text)
+- [x] Very large files (>100MB) — verify file size check works
 
 ---
 
