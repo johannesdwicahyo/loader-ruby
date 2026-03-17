@@ -13,6 +13,15 @@ require_relative "loader_ruby/loaders/docx"
 require_relative "loader_ruby/loaders/csv"
 require_relative "loader_ruby/loaders/html"
 require_relative "loader_ruby/loaders/web"
+require_relative "loader_ruby/loaders/json_loader"
+require_relative "loader_ruby/loaders/xml"
+require_relative "loader_ruby/loaders/epub"
+require_relative "loader_ruby/loaders/rtf"
+require_relative "loader_ruby/loaders/email"
+require_relative "loader_ruby/loaders/xlsx"
+require_relative "loader_ruby/format_detector"
+require_relative "loader_ruby/parallel_loader"
+require_relative "loader_ruby/streaming_loader"
 
 module LoaderRuby
   FORMAT_MAP = {
@@ -21,7 +30,13 @@ module LoaderRuby
     ".pdf" => Loaders::Pdf,
     ".docx" => Loaders::Docx,
     ".csv" => Loaders::Csv, ".tsv" => Loaders::Csv,
-    ".html" => Loaders::Html, ".htm" => Loaders::Html
+    ".html" => Loaders::Html, ".htm" => Loaders::Html,
+    ".json" => Loaders::Json,
+    ".xml" => Loaders::Xml,
+    ".epub" => Loaders::Epub,
+    ".rtf" => Loaders::Rtf,
+    ".eml" => Loaders::Email,
+    ".xlsx" => Loaders::Xlsx, ".xls" => Loaders::Xlsx
   }.freeze
 
   class << self
